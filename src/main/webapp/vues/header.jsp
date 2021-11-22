@@ -17,7 +17,7 @@
 				<i class="fas fa-microphone"></i> encore un blog ?! #maisnonallo 
 			</a>
 		</h1>
-		<nav class="text-end"><a href="" class="text-info"><i class="fas fa-cogs"></i>  Administration</a></nav>
+		<nav class="text-end"><a href="" class="text-info"><i class="fas fa-cogs"></i> Administration</a></nav>
 	</header>
 	
 	<main class="container-fluid bg-ligth">

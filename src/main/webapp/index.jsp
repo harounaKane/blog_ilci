@@ -17,7 +17,7 @@
 				</a>
 			</li>
 			<li class="list-group-item">le contenu</li>
-			<li class="list-group-item">Rédigé par <strong>Toto le 20/10/2021</strong></li>
+			<li class="list-group-item">rédigé par <strong>Tata le 20/10/2021</strong></li>
 		</ul>
 	
 		<%@ include file="vues/footer.jsp" %>
