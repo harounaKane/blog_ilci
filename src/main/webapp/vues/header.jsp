@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<header class="bg-dark p-4 text-center border border-0 border-bottom border-info border-5">
+	<header class="bg-dark p-4 text-center border border-0 border-bottom border-info border-4">
 		<h1 class="text-uppercase">
 			<a href="${pageContext.request.contextPath}/Article"> 
 				<i class="fas fa-microphone"></i> encore un blog ?! #maisnonallo 
