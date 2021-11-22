@@ -32,6 +32,8 @@ public class Article extends HttpServlet {
 		if( action != null ) {
 			if( action.equals("articleClicked") ) {
 				vue = "/vues/article.jsp";
+			}else if( action.equals("admin") ) {
+				vue = "/vues/admin.jsp";
 			}
 		}
 		
