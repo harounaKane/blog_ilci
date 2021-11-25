@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import structure.TabAuteur;
+
 /**
  * Servlet implementation class Article
  */
@@ -29,6 +31,9 @@ public class Article extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		vue = vueDefault;
+		
+		
+		
 		if( action != null ) {
 			if( action.equals("articleClicked") ) {
 				//
@@ -49,7 +54,10 @@ public class Article extends HttpServlet {
 				vue = "/vues/updateArticle.jsp";
 				
 			}else if(action.equals("newArticle")) {
-				//
+				TabAuteur tabAu= new TabAuteur();
+				
+				request.setAttribute("auteurs", tabAu.getTabAut());
+				
 				vue = "/vues/editeArticle.jsp";
 			}
 		}
@@ -63,7 +71,9 @@ public class Article extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-
+		
+		
+		
 		if( action.equals("Commenter") ) { 
 			String pseudo = request.getParameter("pseudo");
 			String comment = request.getParameter("comment");

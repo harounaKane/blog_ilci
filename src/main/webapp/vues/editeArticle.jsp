@@ -19,8 +19,12 @@
 					
 					<label for="">Auteur</label>
 					<select name="auteur" class="form-select">
-						<option value="toto">Toto</option>
-						<option value="tata">Tata</option>
+						
+							<c:forEach items="${requestScope.auteurs}" var="auteur">
+								<option value="${auteur.id}"><c:out value="${auteur.prenom}"></c:out></option>
+							</c:forEach>
+							
+						
 					</select>
 					
 					<label for="">Catégorie</label>
