@@ -4,7 +4,7 @@
 		<h2 class="my-3 text-info"><i class="fas fa-home"></i> Accueil</h2>
 		<ul class="list-group">
 			<li class="list-group-item text-info">
-				<a href="${pageContext.request.contextPath}/Article?action=articleClicked&id=1">
+				<a href="${pageContext.request.contextPath}/Article?action=articleClicked&id=51">
 					<i class="fas fa-hand-point-right"></i> Informatique
 				</a>
 			</li>

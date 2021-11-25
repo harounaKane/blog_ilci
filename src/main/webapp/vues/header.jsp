@@ -11,12 +11,14 @@
 </head>
 <body>
 
-	<header class="bg-dark p-4 text-center border border-0 border-bottom border-info border-3">
+	<header class="bg-dark p-4 text-center border border-0 border-bottom border-info border-4">
+
 		<h1 class="text-uppercase">
 			<a href="${pageContext.request.contextPath}/Article"> 
 				<i class="fas fa-microphone"></i> encore un blog ?! #maisnonallo 
 			</a>
-		</h1> 
+
+		</h1>
 		<nav class="text-end">
 			<a href="${pageContext.request.contextPath}/Article?action=admin" class="text-info"><i class="fas fa-cogs"></i> Administration</a>
 		</nav>

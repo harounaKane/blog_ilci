@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Article")
 public class Article extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	String vue = "";
+	final String vueDefault = "/index.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,16 +28,33 @@ public class Article extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		String vue = "/index.jsp";
-		
+		vue = vueDefault;
 		if( action != null ) {
 			if( action.equals("articleClicked") ) {
+				//
+				request.setAttribute("id", request.getParameter("id"));
 				vue = "/vues/article.jsp";
 			}else if( action.equals("admin") ) {
+				//
 				vue = "/vues/admin.jsp";
+			}else if( action.equals("delete") ) { 
+				System.out.println("delete");
+				vue = "/vues/admin.jsp";
+				
+			}else if( action.equals("update") ) {
+				//
+				System.out.println("update");
+				request.setAttribute("titre", "le titre");
+				request.setAttribute("content", "le contenu");
+				vue = "/vues/updateArticle.jsp";
+				
+			}else if(action.equals("newArticle")) {
+				//
+				vue = "/vues/editeArticle.jsp";
 			}
 		}
-		
+
+
 		getServletContext().getRequestDispatcher(vue).forward(request, response);
 	}
 
@@ -44,8 +62,37 @@ public class Article extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String action = request.getParameter("action");
+
+		if( action.equals("Commenter") ) { 
+			String pseudo = request.getParameter("pseudo");
+			String comment = request.getParameter("comment");
+			int id = Integer.valueOf(request.getParameter("id"));
+			System.out.println(pseudo +" "+comment);
+			vue = "/vues/article.jsp";
+		}else if( action.equals("Ajouter") ) {
+			//
+			System.out.println("ajouter");
+
+		}else if( action.equals("Modiffier") ) {
+			//
+			System.out.println("modif");
+
+		}
+		
+		getServletContext().getRequestDispatcher(vueDefault).forward(request, response);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
