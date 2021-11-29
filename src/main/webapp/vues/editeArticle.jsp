@@ -21,16 +21,16 @@
 					<select name="auteur" class="form-select">
 						
 							<c:forEach items="${requestScope.auteurs}" var="auteur">
-								<option value="${auteur.id}"><c:out value="${auteur.prenom}"></c:out></option>
-							</c:forEach>
-							
-						
+								<option value="${auteur.id}"><c:out value="${auteur.nom}"></c:out></option>
+							</c:forEach>						
 					</select>
 					
 					<label for="">Catégorie</label>
-					<select name="auteur" class="form-select">
-						<option value="Informatique">Informatique</option>
-						<option value="electro">electro</option>
+					<select name="categorie" class="form-select">
+						<c:forEach items="${requestScope.categories}" var="categorie">
+							<option value="${categorie.nom}">${categorie.nom}</option>
+						</c:forEach>
+						
 					</select>
 					
 					<div class="text-center">

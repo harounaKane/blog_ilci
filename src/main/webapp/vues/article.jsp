@@ -2,30 +2,28 @@
 		<%@ include file="header.jsp" %>
 		
 		<h2 class="my-3 text-info"><i class="far fa-file-alt"></i> Article</h2>
-		<h3>Informatique</h3>
+		<h3>${requestScope.article.titre}</h3>
 		<p>
-			Ready to pour… the Font Awesome 6 Beta!
-			The next generation of the web’s favorite icon library + 
-			toolkit is now available as a Beta release! Try out the Free version. 
-			Subscribe to Font Awesome Pro to get even more! 
+			${requestScope.article.contenu}
 		</p>
 		<div>
-			Rédigé par Toto le 20/10/2021
+			Rédigé par ${requestScope.article.auteur.nom} le 20/10/2021
 		</div>
 		
-		<hr />
-			<i class="fas fa-comment"></i> Rédigé par Tutu
-			<p>contenu du commentaire de Tutu</p>
-			
-			<i class="fas fa-comment"></i> Rédigé par Tutu
-			<p>contenu du commentaire de Tutu</p>
-		<hr />
+		<c:if test="${!empty commentaires}">
+			<hr />
+			<c:forEach items="${requestScope.commentaires}" var="commentaire">
+				<i class="fas fa-comment"></i> Rédigé par ${commentaire.pseudo}
+				<p>${commentaire.contenu}</p>
+			</c:forEach>
+			<hr />
+		</c:if>
 		
 		<div class="d-flex justify-content-center">
 			<di class="w-30 border border-info p-5">
 				<h4><i class="fas fa-comment"></i> Nouveau commentaire</h4>
 				<form action="${pageContext.request.contextPath}/Article" method="post">
-				<input type="text" readonly name="id" value="${requestScope.id}" />
+				<input type="hidden" readonly name="id" value="${requestScope.article.id}" />
 					<div class="form-group">
 						<label for="">Pseudo</label>
 						<input type="text" name="pseudo" class="form-control" />
