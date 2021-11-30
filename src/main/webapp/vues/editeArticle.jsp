@@ -14,7 +14,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Contenu</label>
-						<textarea name="content"cols="30" rows="10" class="form-control"></textarea>
+						<textarea name="contenu"cols="30" rows="10" class="form-control"></textarea>
 					</div>
 					
 					<label for="">Auteur</label>

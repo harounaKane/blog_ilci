@@ -14,7 +14,7 @@ import modele.Auteur;
 import modele.Categorie;
 import modele.Commentaire;
 
-public class TabArticle {
+public class TabArticle{
 
 	private Connection connection;
 	
@@ -32,9 +32,6 @@ public class TabArticle {
 	
 	public List<Article> getArticles() throws SQLException, ClassNotFoundException{
 		List<Article> list = new ArrayList<Article>();
-
-		tabAut.connect();
-		tabCat.connect();
 		
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("SELECT * FROM article");
@@ -55,8 +52,6 @@ public class TabArticle {
 	}
 
 	public Article getArticle(int id) throws SQLException {
-		tabAut.connect();
-		tabCat.connect();
 		
 		String sql = "SELECT * FROM article WHERE id = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -102,6 +97,38 @@ public class TabArticle {
 		stmt.setInt(3, comment.getArticle().getId());
 		
 		stmt.executeUpdate();
+		
+	}
+
+	public void update(int id, String titre, String contenu) throws SQLException {
+		connect();
+		String sql = "UPDATE article SET titre = ?, contenu = ? WHERE id = ? ";
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, titre);
+		statement.setString(2, contenu);
+		statement.setInt(3, id);
+		
+		statement.executeUpdate();
+		
+	}
+
+	public void delete(int id) throws SQLException {
+		PreparedStatement statement = connection.prepareStatement("DELETE FROM article WHERE id = ?");
+		statement.setInt(1, id);
+		
+		statement.executeUpdate();
+		
+	}
+
+	public void ajouterArticle(Article article) throws SQLException {
+		String query = "INSERT INTO article VALUE(null, ?, ?, ?, ?)";
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, article.getTitre());
+		statement.setString(2, article.getContenu());
+		statement.setInt(3, article.getAuteur().getId());
+		statement.setString(4, article.getCategorie().getNom());
+		
+		statement.executeUpdate();
 		
 	}
 

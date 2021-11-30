@@ -17,11 +17,14 @@ public class TabAuteur {
 	
 	public TabAuteur() throws ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog", "root", "");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void connect() throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog", "root", "");
-	}
 	
 	public List<Auteur> getAuteurs() throws SQLException{
 		List<Auteur> list = new ArrayList<Auteur>();
@@ -61,7 +64,6 @@ public class TabAuteur {
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		TabAuteur aut = new TabAuteur();
-		aut.connect();
 		List<Auteur> res = aut.getAuteurs();
 		for(Auteur a : res)
 			System.out.println(a);

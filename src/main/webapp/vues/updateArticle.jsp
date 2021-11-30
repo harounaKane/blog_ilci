@@ -8,13 +8,14 @@
 			<di class="w-30 border border-info p-5">
 				<h4 class="text-info"><i class="fas fa-file"></i> Article</h4>
 				<form class="" action="${pageContext.request.contextPath}/Article" method="post">
+				<input type="hidden" name="id" value="${requestScope.article.id}"/>
 					<div class="form-group">
 						<label for="">Titre</label>
-						<input type="text" value="${requestScope.titre}" name="titre" class="form-control" />
+						<input type="text" value="${requestScope.article.titre}" name="titre" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="">Contenu</label>
-						<textarea name="content"cols="30" rows="10" class="form-control">${requestScope.content}</textarea>
+						<textarea name="contenu"cols="30" rows="10" class="form-control">${requestScope.article.contenu}</textarea>
 					</div>
 					<div class="text-center">
 						<input type="submit" name="action" value="Modiffier" class="btn btn-success mt-3" />

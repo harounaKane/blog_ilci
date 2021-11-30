@@ -6,17 +6,17 @@ public class Article {
 	private String titre;
 	private String contenu;
 	private Auteur auteur;
-	private Categorie categoie;
+	private Categorie categorie;
 	
 	public Article() {}
 
-	public Article(int id, String titre, String contenu, Auteur auteur, Categorie categoie) {
+	public Article(int id, String titre, String contenu, Auteur auteur, Categorie categorie) {
 		super();
 		this.id = id;
 		this.titre = titre;
 		this.contenu = contenu;
 		this.auteur = auteur;
-		this.categoie = categoie;
+		this.categorie = categorie;
 	}
 
 	public int getId() {
@@ -51,18 +51,18 @@ public class Article {
 		this.auteur = auteur;
 	}
 
-	public Categorie getCategoie() {
-		return categoie;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setCategoie(Categorie categoie) {
-		this.categoie = categoie;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", titre=" + titre + ", contenu=" + contenu + ", auteur=" + auteur + ", categoie="
-				+ categoie + "]";
+		return "Article [id=" + id + ", titre=" + titre + ", contenu=" + contenu + ", auteur=" + auteur + ", categorie="
+				+ categorie + "]";
 	}
 	
 	

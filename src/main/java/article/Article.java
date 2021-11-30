@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.Auteur;
+import modele.Categorie;
 import modele.Commentaire;
 import structure.TabArticle;
 import structure.TabAuteur;
@@ -42,10 +44,8 @@ public class Article extends HttpServlet {
 		
 		try {
 			tabAut = new TabAuteur();
-			tabAut.connect();
 			
 			tabCat = new TabCategorie();
-			tabCat.connect();
 			
 			tabArt = new TabArticle();
 			tabArt.connect();
@@ -60,17 +60,15 @@ public class Article extends HttpServlet {
 					request.setAttribute("commentaires", tabArt.getCommentaires(Integer.valueOf(id)));
 					vue = "/vues/article.jsp";
 				}else if( action.equals("admin") ) {
-					//
 					vue = "/vues/admin.jsp";
 				}else if( action.equals("delete") ) { 
-					System.out.println("delete");
-					vue = "/vues/admin.jsp";
-					
+					int id = Integer.valueOf(request.getParameter("id"));
+					tabArt.delete(id);
+					response.sendRedirect("Article?action=admin");
+					return;
 				}else if( action.equals("update") ) {
-					//
-					System.out.println("update");
-					request.setAttribute("titre", "le titre");
-					request.setAttribute("content", "le contenu");
+					modele.Article article = tabArt.getArticle(Integer.valueOf(request.getParameter("id")));
+					request.setAttribute("article", article);
 					vue = "/vues/updateArticle.jsp";
 					
 				}else if(action.equals("newArticle")) {
@@ -98,6 +96,8 @@ public class Article extends HttpServlet {
 		try {
 			tabArt = new TabArticle();
 			tabArt.connect();
+			TabAuteur tabAut = new TabAuteur();
+			TabCategorie tabCat = new TabCategorie();
 			
 			if( action.equals("Commenter") ) { 
 				String pseudo = request.getParameter("pseudo");
@@ -105,15 +105,30 @@ public class Article extends HttpServlet {
 				int id = Integer.valueOf(request.getParameter("id"));
 				Commentaire commentaire = new Commentaire(0, pseudo, comment, tabArt.getArticle(id));
 				tabArt.ajouterCommentaire(commentaire);
-				vue = "/vues/article.jsp";
+				
+				response.sendRedirect("Article?action=articleClicked&id="+id);
+				return;
+				
 			}else if( action.equals("Ajouter") ) {
-				//
-				System.out.println("ajouter");
+				String titre = request.getParameter("titre");
+				String contenu= request.getParameter("contenu");
+				Auteur auteur = tabAut.getAuteur(Integer.valueOf(request.getParameter("auteur")));
+				Categorie categorie = new Categorie(request.getParameter("categorie"));
+				modele.Article article = new modele.Article(0, titre, contenu, auteur, categorie);
+				
+				tabArt.ajouterArticle(article);
+				response.sendRedirect( "Article?action=admin" );
+			    return;
 
 			}else if( action.equals("Modiffier") ) {
-				//
-				System.out.println("modif");
-
+				String titre = request.getParameter("titre");
+				String contenu = request.getParameter("contenu");
+				int id = Integer.valueOf(request.getParameter("id"));
+				
+				tabArt.update(id, titre, contenu);
+			    response.sendRedirect( "Article?action=admin" );
+			    return;
+			//	getServletContext().getRequestDispatcher("/admin.jsp").forward(request, response);
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {

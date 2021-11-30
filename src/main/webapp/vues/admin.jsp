@@ -13,29 +13,19 @@
 				<th>Action</th>
 			</tr>
 			
-			<tr>
-				<td>Informatique</td>
-				<td>Contenu...</td>
-				<td>Toto</td>
-				<td>Html</td>
-				<td>
-					<a href="${pageContext.request.contextPath}/Article?action=update&id=1"><i class="fas fa-pencil"></i> </a>
-					&nbsp; - &nbsp;
-					<a href="${pageContext.request.contextPath}/Article?action=delete&id=1"><i class="fas fa-times"></i> </a>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Informatique</td>
-				<td>Contenu...</td>
-				<td>Toto</td>
-				<td>Html</td>
-				<td>
-					<a href="${pageContext.request.contextPath}/Article?action=update&id=2"><i class="fas fa-pencil"></i> </a>
-					&nbsp; - &nbsp;
-					<a href="${pageContext.request.contextPath}/Article?action=delete&id=2"><i class="fas fa-times"></i> </a>
-				</td>
-			</tr>
+			<c:forEach items="${requestScope.articles}" var="article">
+				<tr>
+					<td> <c:out value="${article.titre}" /> </td>
+					<td> <c:out value="${article.contenu.substring(0, 10)}" /> ...</td>
+					<td> <c:out value="${article.auteur.nom}" /> </td>
+					<td> <c:out value="${article.categorie.nom}" /> </td>
+					<td>
+						<a href="${pageContext.request.contextPath}/Article?action=update&id=${article.id}"><i class="fas fa-pencil"></i> </a>
+						&nbsp; - &nbsp;
+						<a href="${pageContext.request.contextPath}/Article?action=delete&id=${article.id}"><i class="fas fa-times"></i> </a>
+					</td>
+				</tr>
+			</c:forEach>
 			
 		</table>
 	

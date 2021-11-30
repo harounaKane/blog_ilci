@@ -18,10 +18,12 @@ public class TabCategorie {
 
 	public TabCategorie() throws ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-	}
-
-	public void connect() throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog", "root", "");
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog", "root", "");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Categorie> getCategories() throws SQLException{
